@@ -1,0 +1,13 @@
+<div class="modalform">
+	<label>Select Customer</label>
+	<input id="clookup" type="text" placeholder="Lookup" (keyup)="searchTerm$.next($event.target.value)"/>
+	<button (click)="lookup()">Search</button>
+	<div *ngIf="customers">
+		<ul *ngFor="let customer of customers">
+			<li (click)="onSelect(customer)">{{customer.CLI_NAME}}</li>
+		</ul>
+	</div>
+    <button type="button" (click)="accept()">OK</button>
+    <button type="button" (click)="cancel()">Cancel</button>
+</div>
+<div class="overlay"></div>

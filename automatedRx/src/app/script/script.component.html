@@ -1,0 +1,138 @@
+<section id="header" (keypress)="getKeyPress($event)">
+  <span>TO</span>
+	<div id="customer">
+    <p class="cust" (click)="doPatient()">{{script.name}}</p>
+	<input id="swpCard" #swbox type="password" (focus)="swbox.value=''" (keyup.enter)="insPlan($event.target.value)"/>
+  </div>
+  <div class="tabular">
+    <p class="Row hinfo">
+      <span class="Cell doctor">Doctor</span>
+      <span class="Cell script">Type</span>
+      <span  class="Cell script">Status</span>
+      <span class="Cell script">Script No.</span>
+      <span class="Cell script">Date</span>
+    </p>
+    <p class=" Row hdetail">
+      <span class=" Cell doctor " (click)="getDoctor()">{{script.doctor}}</span>
+      <span class="Cell script">
+		<select>
+			<option *ngFor="let opt of rxType" (select)="selType(opt)">{{opt}}</option>
+		</select>
+	  </span>
+      <span class="Cell script">{{script.status}}</span>
+      <span class="Cell script">{{script.rxno}}</span>
+      <span class="Cell script">{{script.date | date:'medium'}}</span>
+    </p>
+  </div>
+  <lookup-patient *ngIf="popPatient" (close)="closeModal($event)"></lookup-patient>
+</section>
+<section class="body">
+	<table>
+    <caption>Prescription</caption>
+		<thead>
+			<tr>
+				<th (click)="doItems()">Description</th>
+				<th>Qty</th>
+				<th>Cost</th>
+				<th>Fees</th>
+				<th>Extended</th>
+				<th>Tax</th>
+				<th>Days</th>
+				<th>Repeats</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let dLine of detailLines; index as i">
+				<td (click)="openDialog('labelId')">{{dLine.description}}</td>
+				<td class="justify" contenteditable="true" (input)="calcLine(i)" (keyup.enter)="calcLine(i)">{{dLine.qty}}</td>
+				<td class="justify">{{dLine.cost | currency: 'USD':'symbol-narrow'}}</td>
+				<td class="justify">{{dLine.fees | currency: 'USD':'symbol-narrow'}}</td>
+				<td class="justify blu">{{dLine.extended | currency: 'USD':'symbol-narrow'}}</td>
+				<td>{{dLine.txcd}}</td>
+				<td class="justify" contenteditable="true">{{dLine.days}}</td>
+				<td class="justify" contenteditable="true">{{dLine.refills}}</td>
+			</tr>
+
+		</tbody>
+		<tfoot>
+			<tr class="totals">
+        <td colspan="6" class="noline" (click)="getInsurance('4')">{{script.insplan4}}</td>
+				<td class="noline">Sub-Total</td>
+				<td class="justify">{{script.subtotal | currency: 'USD':'symbol-narrow'}}</td>
+			</tr>
+			<tr>
+        <td colspan="6" class="noline" (click)="getInsurance('1')">{{script.insplan1}}</td>
+				<td class="noline" (click)="openDialog('discountId')">Discount</td>
+				<td class="justify">{{script.discount | currency: 'USD':'symbol-narrow'}}</td>
+			</tr>
+			<tr>
+        <td colspan="6" class="noline" (click)="getInsurance('2')">{{script.insplan2}}</td>
+				<td class="noline">Tax</td>
+				<td class="justify">{{script.tax | currency: 'USD':'symbol-narrow'}}</td>
+			</tr>
+			<tr>
+        <td colspan="6" class="noline" (click)="getInsurance('3')">{{script.insplan3}}</td>
+				<td class="noline gtotal">Total</td>
+				<td class="justify total">{{script.total | currency: 'USD':'symbol-narrow'}}</td>
+			</tr>
+		<tfoot>
+	</table>
+  <lookup-item *ngIf="popItems" (close)="closeItemView($event)"></lookup-item>
+</section>
+<section class="footer">
+
+</section>
+<div id="docId" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+	<label for="drwho">Doctor</label>
+	<input name="drwho" type="text" placeholder="Enter Doctor" (keyup.enter)="lookupDoctor($event.target.value)"/>
+	<ul *ngIf="docList">
+		<li *ngFor="let doctor of docList" (click)="onDocSelect(doctor)">{{doctor.FULLNAME}}</li>
+	</ul>
+    <p>
+		<button (click)="addDoctor()">Accept</button>
+		<button (click)="closeDialog('docId')">Cancel</button>
+	</p>
+  </div>
+
+</div>
+
+<div id="swipeId" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+	<label for="swipe">Health Card</label>
+	<input name="swipe" type="text" placeholder="Swipe card here" (keyup.enter)="openDialog('swipeId')"/>
+    <p>
+		<button (click)="acceptCard()">Accept</button>
+		<button (click)="closeDialog('swipeId')">Cancel</button>
+	</p>
+  </div>
+
+</div>
+
+<div id="discountId" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+	<label for="discount">Discount</label>
+	<input name="discount" type="number" placeholder="Discount %" (keyup.enter)="applyDiscount($event.target.value)"/>
+  </div>
+
+</div>
+
+<div id="labelId" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+	<label for="discount">Label</label>
+	<input name="discount" type="text" placeholder="Label Codes" (keyup.enter)="labeling($event.target.value)"/>
+  </div>
+
+</div>

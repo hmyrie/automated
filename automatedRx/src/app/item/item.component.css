@@ -1,0 +1,22 @@
+table {
+  width: 80%;
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid black;
+}
+tr:nth-child(even) {
+  background-color: aliceblue;
+}
+tr:hover {
+  background-color: lightgrey;
+}
+table thead {
+  background-color: blue;
+  color: white;
+}
+input {
+  margin-bottom: 15px;
+  margin-left: 5px;
+}
+  

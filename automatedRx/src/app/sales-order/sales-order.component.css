@@ -1,0 +1,111 @@
+.head {
+  margin-left: 15px;
+  overflow: hidden;
+  width: 98%;
+}
+#cmpy {
+  margin-left: 20px;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+.companyname  {
+  color: blue;
+  font-size: 1.4em;
+}
+.billing {
+  float: left;
+  width: 25%;
+  margin-left: 1px;
+}
+.ship {
+  float: left;
+  width: 25%;
+  margin-left: 10px;
+}
+.billee, .shipping {
+  background-color: #4169E1;
+  color: white;
+  padding: 2px;
+}
+.parms {
+  margin-left: 10px;
+  float: left;
+  padding: 1px;
+  width: 30%;
+}
+.lin {
+  display: table-row;
+}
+.tabular {
+  display: table;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+}
+.col {
+  display: table-cell;
+  padding: 2px;
+  border-right: 1px solid black;
+}
+table, td, th {
+  border: 1px solid grey;
+  padding: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 15px;
+  width: 90%;
+}
+th {
+  background-color: #4169E1;
+  color: white;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+.numeral {
+  text-align: right;
+}
+.total {
+  background-color: #FFFACD
+}
+
+.noline {
+  border: none;
+}
+.terms {
+  color: #4169E1;
+  border-bottom: 1px solid black;
+  width: 110px;
+  margin-top: 15px;
+}
+.term2 {
+	font-size: 8px;
+}
+.buton {
+	margin: 2px;
+}
+
+@media screen {
+	#cmpy {
+		display: none;
+	}
+}
+
+@media print {
+	.buton, button {
+		display: none;
+	}
+	.billee, .shipping, th {
+		background-color: Gray;
+		color: white;
+	}
+	.zapper {
+		display: none;
+	}
+}
+@page :left {
+  margin-left: 3cm;
+}
+
+@page :right {
+  margin-left: 4cm;
+}

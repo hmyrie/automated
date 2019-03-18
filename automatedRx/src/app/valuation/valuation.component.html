@@ -1,0 +1,31 @@
+<h1>
+  Valuation Report
+</h1>
+<div class="head">
+	<p [hidden]="!canPrint">
+		Printed: {{printDate | date: "medium"}}
+	</p>
+</div>
+<div class="result" *ngIf="stkVal">
+	<div>
+		<label>Value at Price: </label>
+		<span>{{stkVal[0].VPRICE  | currency: 'USD':'symbol-narrow'}}</span>
+	</div>
+	<div>
+		<label>Value at Cost: </label>
+		<span>{{stkVal[0].VCOST  | currency: 'USD':'symbol-narrow'}}</span>
+	</div>
+	<div>
+		<label>Markup: </label>
+		<span>{{markup | percent: '1.1-2'}}</span>
+	</div>
+	<div>
+		<label>Margin: </label>
+		<span>{{margin | percent: '1.1-2'}}</span>
+	</div>
+</div>
+<div>
+	<button (click)="valuate()">Compute</button>
+	<button [disabled]="!canPrint" (click)="printValue()">Print</button>
+</div>
+

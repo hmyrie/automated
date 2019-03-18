@@ -1,0 +1,43 @@
+div	{
+	padding: 5px;
+	margin: 10px;
+}
+.head {
+	font-size: 18px;
+}
+      h1 {
+        border: 1px solid #ccc;
+        color: #f00;
+        text-align: center;
+        text-decoration: underline;
+        text-decoration-color: blue;
+      }
+.result	{
+	margin-left: 30px;
+}
+
+@media print {
+ /*  Your notes  */
+ @page { margin: 2cm }
+ 
+	body {
+		font: 16pt Georgia, "Times New Roman", Times, serif;
+		line-height: 1.3;
+		background: #fff !important;
+		color: #000;
+	}
+	
+	h1 {
+		font-size: 24pt;
+		color: black;
+	}
+
+	h2, h3, h4 {
+		font-size: 14pt;
+		margin-top: 25px;
+	}
+	
+	nav, button  {
+		display: none;
+	}
+}

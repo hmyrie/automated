@@ -1,0 +1,14 @@
+<div class="modalform">
+	<label>Select Vendor</label>
+	<input type="text" placeholder="Lookup" (keyup)="searchTerm$.next($event.target.value)"/>
+	<button (click)="lookup()">Search</button>
+	<div *ngIf="vendors">
+		<ul *ngFor="let vendor of vendors">
+			<li (click)="onSelect(vendor)">{{vendor.SUP_NAME}}</li>
+		</ul>
+	</div>
+<!--	<input type="text" (change)="newname = $event.target.value;" /> -->
+    <button type="button" (click)="accept()">OK</button>
+    <button type="button" (click)="cancel()">Cancel</button>
+</div>
+<div class="overlay"></div>

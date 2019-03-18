@@ -1,0 +1,213 @@
+ <div>
+ <nav class="btns cust">
+ 	<button (click)="lookupCustomer()" [disabled]="!isNew">{{btn_label}}</button>
+	<button (click)="lookupPO()" [disabled]="!isNew">Order</button>
+	<button (click)="cancelInvoice()" [disabled]="isNew">Cancel</button>
+	<button (click)="printInvoice()" [disabled]="!canSave">Print</button>
+	<button (click)="saveInvoice()" [disabled]="!canSave">Save</button>
+	<button (click)="closeInvoice()" [disabled]="!isNew">Close</button>
+ </nav>
+  <section id="cmpy" *ngIf="cmpy">
+		<div class="cmpyname">{{cmpy.name}}</div>
+		<div>{{cmpy.addr1}}</div>
+		<div>{{cmpy.phone}}</div>
+  </section>
+  <div id="customer" class="float-left">
+
+    <div class="row">
+      <span class="cell plain">
+          {{salesInv.customer}}
+		<lookup-customer *ngIf="popCustomer" (close)="closeModal($event)"></lookup-customer>
+		</span>
+    </div>
+    <div class="row">
+      <span class="cell plain">
+        {{salesInv.address}}
+      </span>
+    </div>
+    <div class="row">
+      <span class="cell plain">
+        {{salesInv.address2}}
+      </span>
+    </div>
+  </div>
+    <span class="cap" class="float-left">
+         <h1>Sales Invoice</h1>
+    </span>
+  <div id="table" class="float-left">
+    <div class="row">
+      <span class="cell">
+        <span>Invoice No.</span>
+      </span>
+      <span id="invno" class="cell" contenteditable="true" (blur)="updateInv()">
+    <!--    <span>{{salesInv.number}}</span> -->
+		{{salesInv.number}}
+		</span>
+    </div>
+    <div class="row">
+      <span class="cell">
+        <span>Date</span>
+      </span>
+      <span class="cell">
+        <span>{{salesInv.idate | date: "d/M/y"}}</span>
+      </span>
+    </div>
+  </div>
+  <br/>
+  <div id="po">
+    
+  <div id="coltop">
+    <div class="row tabl">
+      <span class="cell">
+        User
+      </span>
+      <span class="cell">
+        Terms
+      </span>
+      <span class="cell">
+        Status
+      </span>
+      <span class="cell">
+        Amount
+      </span>
+      <span class="cell">
+        Order No.
+      </span>
+    </div>
+    <div class="row tabl">
+      <span class="cell">
+        {{salesInv.salesman}}
+      </span>
+      <span class="cell" (select)="changeTerm()">
+        <select >
+		  <option *ngFor="let term of terms" [value]="term">{{term}}</option>
+		</select>
+      </span>
+      <span class="cell">
+        {{salesInv.status}}
+      </span>
+      <span class="cell">
+        {{salesInv.total | currency: 'USD':'symbol-narrow'}}
+      </span>
+      <span class="cell" contenteditable="true">
+        {{salesInv.ref}}
+      </span>
+    </div>
+  </div>
+  </div>
+  <br/>
+  <div>
+	<button class="btns" (click)="addItem()" [disabled]="isNew">Add</button>
+  </div>
+	 <lookup-item *ngIf="popItems" (close)="closeItemView($event)"></lookup-item>
+  <section id="invoice">
+    <div class="row" style="background-color: blue; color: white;">
+      <span class="cell descript">
+        Description
+      </span>
+      <span class="cell">
+        Quantity
+      </span>
+      <span class="cell">
+        Cost
+      </span>
+      <span class="cell">
+        Tax
+      </span>
+      <span class="cell">
+        Extended
+      </span>
+ <!--     <span class="cell">
+        <img src="assets/bin.png" alt="Delete Line" class="imclass">
+      </span>  -->
+    </div>
+    <div class="row" *ngFor="let item of itemsList; let i = index" style="color: black; background-color: white">
+      <span class="cell descript">
+        {{item.description}}
+      </span>
+      <span class="cell quant">
+        <input type="number" [(ngModel)]="item.quantity" (change)="updateQty(i)"/>
+      </span>
+      <span class="cell price" style="text-align: right" contenteditable="true" (blur)="updatePrice(i)">
+	     <input type="number" [(ngModel)]="item.price" (change)="updateQty(i)"/>
+        <!--{{item.price | currency: 'USD':'symbol-narrow'}} -->
+      </span>
+      <span class="cell">
+        {{item.taxcode}}
+      </span>
+      <span class="cell" style="text-align: right">
+        {{item.extended | currency: 'USD':'symbol-narrow'}}
+      </span>
+	  <span class="cell">
+		<label (click)="delItem(i)">-</label>
+	  </span>
+   </div>
+    <div class="row" style="background-color: azure; color: black;">
+      <span class="cell descript">
+        
+      </span>
+      <span class="cell">
+        
+      </span>
+      <span class="cell">
+        Sub-Total:  
+      </span>
+      <span class="cell">
+      
+      </span>
+      <span class="cell">
+        {{salesInv.total | currency: 'USD':'symbol-narrow'}}
+      </span>
+    </div>
+   <div class="row" style="background-color: azure; color: black;">
+      <span class="cell descript">
+        
+      </span>
+      <span class="cell">
+        
+      </span>
+      <span class="cell">
+        Discount:  
+      </span>
+      <span class="cell">
+      
+      </span>
+      <span class="cell">
+        {{salesInv.discount | currency: 'USD':'symbol-narrow'}}
+      </span>
+    </div>
+   <div class="row" style="background-color: azure; color: black;">
+      <span class="cell descript">
+        
+      </span>
+      <span class="cell">
+        
+      </span>
+      <span class="cell">
+        Tax:  
+      </span>
+      <span class="cell">
+      
+      </span>
+      <span class="cell">
+        {{salesInv.tax | currency: 'USD':'symbol-narrow'}}
+      </span>
+    </div>
+   <div class="row" style="background-color: azure; color: black;">
+      <span class="cell descript">
+        
+      </span>
+      <span class="cell">
+        
+      </span>
+      <span class="cell">
+        Total:  
+      </span>
+      <span class="cell">
+      
+      </span>
+      <span class="cell">
+        {{salesInv.total | currency: 'USD':'symbol-narrow'}}
+      </span>
+    </div>
+ </section>

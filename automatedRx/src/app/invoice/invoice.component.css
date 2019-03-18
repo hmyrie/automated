@@ -1,0 +1,123 @@
+  #cmpy {
+	  display: none;
+  }
+  #invoice {
+      display: table;
+      color: white;
+      border: 1px solid #73AD21;
+      width: 100%;
+      background-color: blue;
+    }
+    #coltop {
+      display: table;
+      border: 1px solid #73AD21;
+      color: black;
+      width: 100%;
+    }
+    #customer {
+      display: table;
+      border: 1px solid blue;
+    }
+    #table {
+      display: table;
+      border: 1px solid black;
+	  margin-left:auto;
+	  margin-right:0;
+    }
+    .row {
+      display: table-row;
+      padding: 4px;
+    }
+    thead {
+      display: table-header-group;
+    }
+    tbody {
+      display: table-row-group;
+    }
+    tfoot {
+      display: table-footer-group;
+    }
+    col {
+      display: table-column;
+    }
+    colgroup {
+      display: table-column-group;
+    }
+	.float-left {
+		float: left;
+		width: 33%;
+	}
+    .cell {
+      display: table-cell;
+      border-top: 1px solid blue;
+      border-right: 1px solid blue;
+      padding: 4px;
+    }
+    caption {
+      display: table-caption;
+      Background-color: #708BC8;
+    }
+    #caption {
+      caption-side: top;
+    }
+    #caption {
+      caption-side: bottom;
+    }
+    .cust {
+      color: blue;
+      background: #849FDC;
+    }
+    .cap {
+      font-family: "Lucida Bright", "Times New Roman", Times, serif;
+      font-size: 1.5em;
+      color: blue;
+	  text-align:center;
+    }
+	.plain {
+		border: none;
+	}
+    #po {
+      padding: 4px;
+      font-size: 0.5rem;
+      font-weight: bold;
+      width: 90%;
+    }
+    .descript {
+      width: 50%;
+    }
+    .tabl {
+      background-color: azure;
+    }
+	.imclass {
+		width: 20px;
+	}
+	select {
+		font-size: 0.6rem;
+	}
+	
+	.quant {
+		width: 12%;
+	}
+	
+	.price {
+		width: 20%;
+	}
+
+	span input {
+		width: 100%;
+		min-width: 10px;
+		max-width: 100%;
+		font-size: 0.6rem;
+		margin: 0;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+	}
+	@media print {
+		#cmpy {
+			display: block;
+		}
+		.btns {
+			display: none;
+		}
+	}

@@ -1,0 +1,85 @@
+span	{
+			padding: 5px;
+			margin: 3px;
+}
+
+.tabular  {
+	display: table;
+}
+.row {display: table-row;}
+.cell {
+		display: table-cell;
+		margin: 2px;
+	}
+.date	{
+			width: 15%;
+}
+
+.figures	{
+			width: 10%;
+}
+
+.ref	{
+			width: 15%;
+}
+
+.src	{
+			width: 10%;
+}
+    .title {
+        border: 1px solid #ccc;
+        color: #f00;
+		font-size: 1.1em;
+        text-align: center;
+        text-decoration: underline;
+        text-decoration-color: black;
+      }
+	 .reportDate {
+		 display: none;
+	 }
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
+	li {
+		border-bottom: 1px solid #90bade;
+		margin: 0;
+	display: block;
+	padding: 5px 5px 5px 0.5em;
+	border-left: 10px solid #1958b7;
+	border-right: 10px solid #508fc4;
+	background-color: #2175bc;
+	color: #fff;
+	text-decoration: none;
+	}
+	
+@media print {
+ /*  Your notes  */
+ @page { margin: 2cm }
+ 
+	body {
+		font: 13pt Georgia, "Times New Roman", Times, serif;
+		line-height: 1.3;
+		background: #fff !important;
+		color: #000;
+	}
+	
+	h1 {
+		font-size: 20pt;
+	}
+
+	h2, h3, h4 {
+		font-size: 14pt;
+		margin-top: 25px;
+	}
+	
+	nav, button, select, input, .dater, .list  {
+		display: none;
+	}
+	 .reportDate {
+		 display: block;
+	 }
+}

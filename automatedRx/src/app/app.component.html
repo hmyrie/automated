@@ -1,0 +1,195 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<nav>
+   <div class="menu" (click)="toggle()" [hidden]="showMenu">&#9776;
+  </div>
+<ul id="menu-v">
+    <li><a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a></li>
+    <li><a href="#">Home</a></li>
+    <li>
+        <a href="#" class="arrow">Setup</a>
+        <ul>
+            <li><a routerLink = "items" (click)="hideMenu()">Items</a></li>
+            <li>
+                <a href="#" class="arrow">Suspendisse vel</a>
+                <ul class="sMenu">
+                    <li><a href="#">Etiam vestibulum</a></li>
+                    <li><a href="#">Integer efficitur</a></li>
+                    <li><a href="#">Finibus nibh</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="arrow">Eget ac quam</a>
+                <ul class="sMenu">
+                    <li><a href="#">Nam elementum</a></li>
+                    <li><a href="#">Magna pharetra</a></li>
+                    <li><a href="#">Pulvinar mi eget</a></li>
+                    <li><a href="#">Tincidunt orci</a></li>
+                    <li><a href="#">Curabitur</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="javascript:void(0)" class="arrow">Inventory</a>
+        <ul>
+            <li>
+                <a href="#" class="arrow">Items</a>
+                <ul class="sMenu">
+                    <li><a routerLink = "items" (click)="hideMenu()">Update</a></li>
+                    <li><a routerLink = "mapping"(click)="hideMenu()" >Map Items</a></li>
+                    <li><a href="#">Finibus nibh</a></li>
+                </ul>
+            </li>
+            <li><a routerLink = "stkvalu" (click)="hideMenu()">Stock Valuation</a></li>
+            <li><a routerLink = "stkcontrol" (click)="hideMenu()">Item Control</a></li>
+            <li><a routerLink = "stkmove" (click)="hideMenu()">Item Movement Detail</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="javascript:void(0)" class="arrow">Activity</a>
+        <ul>
+            <li><a routerLink = "pointsale" (click)="hideMenu()">Point of Sale</a></li>
+            <li><a routerLink = "prescription" (click)="hideMenu()">Prescription</a></li>
+            <li><a routerLink = "salesinvoice" (click)="hideMenu()">Sales Invoice</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="javascript:void(0)" class="arrow">Receivable</a>
+        <ul>
+            <li><a routerLink = "client" (click)="hideMenu()">Customer</a></li>
+            <li>
+                <a href="javascript:void(0)" class="arrow">Sales</a>
+                <ul class="sMenu">
+					<li><a routerLink = "salesorder" (click)="hideMenu()">Sales Order</a></li>
+					<li><a routerLink = "salesinvoice" (click)="hideMenu()">Sales Invoice</a></li>
+					<li><a routerLink = "salesreceipt" (click)="hideMenu()">Receipt</a></li>
+                </ul>
+            </li>
+            <li><a routerLink = "invsummary" (click)="hideMenu()">Invoice Summary</a></li>
+            <li><a routerLink = "paysummary" (click)="hideMenu()">Payment Summary</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#" class="arrow">Payable</a>
+        <ul>
+            <li>
+				<a class="arrow" routerLink = "pinvoice" (click)="hideMenu()">Purchase Invoice</a>
+                <ul class="sMenu">
+                    <li><a href="#">Nunc eget</a></li>
+                    <li><a href="#">Pellentesque </a></li>
+                    <li><a href="#">Elementum</a></li>
+                    <li><a href="#">Eu tortor</a></li>
+                </ul>
+            </li>
+            <li><a routerLink = "invoice" (click)="hideMenu()">New Invoice</a></li>
+            <li><a href="#">Fermentum nunc</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#" class="arrow">Reports</a>
+        <ul>
+            <li><a routerLink = "daybook" (click)="hideMenu()">Day Book</a></li>
+            <li>
+                <a href="#" class="arrow">Script Activity</a>
+                <ul>
+                    <li><a routerLink = "rxsales" (click)="hideMenu()">Daily</a></li>
+                    <li><a href="#">By Patient </a></li>
+                    <li><a href="#">By Doctor</a></li>
+                    <li><a href="#">By Source</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="arrow">Sales</a>
+                <ul>
+                    <li><a routerLink = "cashlog" (click)="hideMenu()">Cashier's Log</a></li>
+                    <li><a routerLink = "dailysales" (click)="hideMenu()">Daily Sales</a></li>
+                    <li><a href="#">Script Summary</a></li>
+                    <li><a href="#">Uncashed Scripts</a></li>
+                </ul>
+            </li>
+            <li><a routerLink = "graph" (click)="hideMenu()">Graph</a></li>
+            <li>
+                <a href="#" class="arrow">Inventory</a>
+                <ul>
+                    <li><a href="#"></a></li>
+                    <li><a href="#">Purchase </a></li>
+                    <li><a href="#">Trends</a></li>
+                    <li><a href="#">Expiry Report</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Ultricies</a></li>
+            <li><a href="#">Fermentum nunc</a></li>
+        </ul>
+    </li>
+</ul>
+<!--  <div class="navbar"  [hidden]="!showMenu">
+    <div class="dropdown">
+		<button class="dropbtn">File
+			<i class="fa fa-caret-down"></i>
+		</button>
+	</div>
+    <div class="dropdown">
+		<button class="dropbtn">Inventory
+			<i class="fa fa-caret-down">&#8681;</i>
+		</button>
+		<div class="dropdown-content">
+			<a routerLink = "stkvalu">Stock Valuation</a>
+			<a routerLink = "stkcontrol">Item Control</a>
+			<a routerLink = "stkmove">Item Movement Detail</a>
+		</div>
+	</div>
+    <div class="dropdown">
+		<button class="dropbtn">Activity
+			<i class="fa fa-caret-down">&#8595;</i>
+		</button>
+		<div class="dropdown-content">
+			<a routerLink = "pointsale" (click)="hideMenu()">Point of Sale</a>
+			<a routerLink = "prescription" (click)="hideMenu()">Prescription</a>
+			<a routerLink = "salesinvoice" (click)="hideMenu()">Sales Invoice</a>
+		</div>
+	</div>
+    <div class="dropdown">
+		<button class="dropbtn">Receivable
+			<i class="fa fa-caret-down">&#8595;</i>
+		</button>
+		<div class="dropdown-content">
+			<a routerLink = "invsummary">Invoice Summary</a>
+			<a routerLink = "paysummary">Payment Summary</a>
+		</div>
+	</div>
+    <div class="dropdown">
+		<button class="dropbtn">Payable
+			<i class="fa fa-caret-down">&#8681;</i>
+		</button>
+		<div class="dropdown-content">
+			<a routerLink = "items" (click)="hideMenu()">Items</a>
+			<a routerLink = "pinvoice" (click)="hideMenu()">Purchase Invoice</a>
+			<a routerLink = "invoice" (click)="hideMenu()">New Invoice</a>
+			<a routerLink = "mapping">Map Items</a>
+		</div>
+	</div>
+    <div class="dropdown">
+		<button class="dropbtn">Reports
+			<i class="fa fa-caret-down"></i>
+		</button>
+		<div class="dropdown-content"> 
+			<div class="dropside">
+			    <a href="#">Sales</a>
+				<div class="dropdown-subcontent">
+					<a routerLink = "items">Sales Report</a>
+					<a routerLink = "items">Cash Log</a>
+					<a routerLink = "items">Dispensary Summary</a>
+				</div>
+			</div>
+
+			<a routerLink = "pinvoice">Inventory</a>
+			<a routerLink = "invoice">Graph</a>
+			<a routerLink = "mapping">History</a>
+		</div>
+	</div>
+  </div> -->
+</nav>
+<div>
+	<app-setup *ngIf="popCompany" (close)="closeModal($event)"></app-setup>
+</div>
+<router-outlet></router-outlet>

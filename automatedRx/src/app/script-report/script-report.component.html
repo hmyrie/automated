@@ -1,0 +1,22 @@
+<div>
+	{{reportdate}}
+</div>
+ <div>
+	<label>Start Date</label>
+    <input type="date" [(ngModel)]="date1"/>
+	<label>End Date</label>
+    <input type="date" [(ngModel)]="date2" />
+	<div>
+		<button (click)="getScripts()">Continue</button>
+	</div>
+ </div>
+ 
+ <div>
+     <ejs-grid [dataSource]='scripts' [allowPaging]="true" [allowSorting]="true"  [allowFiltering]="true" [allowGrouping]="true" [groupSettings]="groupOptions" [pageSettings]='pageSettings'  (dataBound)='onDataBound($event)'>
+	  <e-columns>
+		<e-column field='SDATE' headerText='Date' textAlign='Right' format='yMd' width=100></e-column>
+        <e-column field='TOTAL' headerText='Price' textAlign='Right' format='C2' [allowSorting]='false' [allowFiltering]='false' width=120></e-column>
+        <e-column field='COPAY' headerText='CoPay' textAlign='Right' format='C2' [allowSorting]='false' [allowFiltering]='false' width=120></e-column>
+      </e-columns>
+     </ejs-grid>
+ </div>

@@ -1,0 +1,33 @@
+<div  id="barchart">
+  <canvas baseChart 
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas>
+</div>
+<div id="piechart">
+  <canvas baseChart 
+    [data]="pieChartData" 
+    [labels]="pieChartLabels" 
+    [chartType]="pieChartType"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [legend]="pieChartLegend">
+  </canvas>
+</div>
+
+
+<div id="modal" class="modalform">
+  <div class="modal-content">
+	<select #rep (select)="onSelect(opt)">
+		<option *ngFor="let opt of reports; index as i" [value]="opt">{{opt}}</option>
+	</select>
+	<input type="number" min="2000" max="max_year" #zyear/>
+	<button (click)="getResult(zyear.value, rep.value)">Go</button>
+  </div>
+  </div>
+
+<div id="ripple" class="lds-ripple"><div></div><div></div></div>

@@ -1,0 +1,25 @@
+<div class="modalform">
+	<label>Lookup Item</label>
+<!--	<input type="text" placeholder="Lookup" (keyup)="searchTerm$.next($event.target.value)" [(ngModel)]="searchText"/> -->
+	<input type="text" [(ngModel)]="searchText" />
+	<button (click)="lookup()">Search</button>
+	<div *ngIf="filteredList">
+	<form [formGroup]="lineItemsForm" (ngSubmit)="accept()">
+		<p>Please select the items:</p>
+		<ul>
+			<li class="no-style" 
+			*ngFor="let order of lineItemsForm.controls.lineItemChkBox.controls; let i = index">
+				<label formArrayName="lineItemChkBox" >
+				<input type="checkbox" [formControlName]="i">
+				{{filteredList[i].Description}}
+				</label>
+			</li>
+		</ul>
+		<div *ngIf="!lineItemsForm.valid" style="color: crimson">At least one item must be selected</div>
+		<br>
+		<button type="submit" class="btn btn-primary float-right" [disabled]="!lineItemsForm.valid">Ok</button>
+    	<button type="button" (click)="cancel()">Cancel</button>
+	</form>	
+	</div>
+</div>
+<div class="overlay"></div>

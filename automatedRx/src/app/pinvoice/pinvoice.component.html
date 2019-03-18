@@ -1,0 +1,90 @@
+    <header class="clearfix">
+      <div id="logo">
+        <img src="logo.png">
+      </div>
+      <details id="company">
+        <summary><h2 class="name">{{company.name}}</h2></summary>
+        <p>{{company.address}}</p>
+        <p>{{company.phone}}</p>
+        <p><a href="mailto:company@example.com">{{company.email}}</a></p>
+      </details>
+	  <nav>
+	     <button [disabled]="isActive"(click)="newInvoice()">New Invoice</button>
+	     <button [disabled]="!isActive">Save Invoice</button>
+	     <button [disabled]="isActive">From P.O.</button>
+	     <button [disabled]="isActive" (click)="printInv()">Print</button>
+		 <button [disabled]="!isActive">Cancel</button>
+	  </nav>
+    </header>
+    <section>
+  		<lookup-vendor *ngIf="popVendor" (close)="closeModal($event)"></lookup-vendor>
+  		<browse-stock *ngIf="popItem" (close)="closeStock($event)"></browse-stock>
+      <section id="details" class="clearfix">
+        <div id="client">
+          <div class="to">INVOICE TO:</div>
+		<!--  <button (click)="newInvoice()">New</button> -->
+		  <details>
+          <summary><h2 class="name">{{client.name}}</h2></summary>
+          <div class="address">{{client.address}}</div>
+          <div class="email"><a href="mailto:john@example.com">{{client.email}}</a></div>
+		  </details>
+	  </div>
+        <div id="invoice">
+          <h2>INVOICE <span>{{invoice.number}}</span></h2>
+          <div class="date">Date of Invoice: <span>{{invoice.date}}</span></div>
+          <div class="date">Due Date: <span>{{invoice.due}}</span></div>
+        </div>
+      </section>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="no">#</th>
+            <th class="desc">DESCRIPTION</th>
+            <th class="unit">UNIT PRICE</th>
+            <th class="qty">QUANTITY</th>
+            <th class="total">TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lineitem of lineitems">
+            <td class="no">{{lineitem.item}}</td>
+            <td class="desc">
+			    <details>
+			      <summary><h2>{{lineitem.description}}</h2></summary>
+			      <div>{{lineitem.remarks}}</div>
+			    </details>
+			</td>
+            <td class="unit">{{lineitem.uprice | currency: 'USD':'symbol-narrow'}}</td>
+            <td class="qty">{{lineitem.quantity}}</td>
+            <td class="total">{{lineitem.total | currency: 'USD':'symbol-narrow'}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td><button class="btn btn-primary" (click)="addItem()">New</button></td>
+            <td></td>
+            <td colspan="2">SUBTOTAL</td>
+            <td>{{invoice.subtotal | currency: 'USD':'symbol-narrow'}}</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">TAX {{invoice.taxpct | percent}}</td>
+            <td>{{invoice.tax | currency: 'USD':'symbol-narrow'}}</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">GRAND TOTAL</td>
+            <td>{{invoice.total | currency: 'USD':'symbol-narrow'}}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div id="thanks">Thank you!</div>
+      <div id="notices">
+        <div>NOTICE:</div>
+        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+      </div>
+    </section>
+    <p>
+      Invoice was created on a computer and is valid without the signature and seal.
+    </p>
+

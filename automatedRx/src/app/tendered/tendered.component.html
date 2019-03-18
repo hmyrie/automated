@@ -1,0 +1,25 @@
+<div class="modalform">
+<p>
+  TENDER 
+</p>
+<p>
+	{{total | currency: 'USD':'symbol-narrow'}}
+</p>
+<p>
+	<select (change)="selectPMode($event.target.value)">
+	  <option *ngFor="let paymod of paymodes" value={{paymod}}>{{paymod}}</option>
+	</select>
+	<select (change)="selectCurrency($event.target.value)">
+		  <option *ngFor="let currency of currencies" value={{currency}}>{{currency}}</option>
+	</select>
+	<p>
+		<label>Tendered</label>
+	</p>
+	<p>
+		<input type="number" placeholder="Enter Amount" (keyup.enter)="accept($event.target.value)">
+	</p>
+	<p>
+		{{errmsg}}
+	</p>
+</div>
+<div class="overlay"></div>

@@ -1,0 +1,48 @@
+<p>Supplier Invoice Summary</p>
+<h3>{{range}}</h3>
+<div>
+	<vendor-query *ngIf="popVendor" (close)="closeModal($event)"></vendor-query>
+</div>
+<!--<div>{{counter}}</div> -->
+<div id="xdiv"></div>
+<div class="table" *ngIf="invoiceList">
+	<ul class="header">
+		<li class="row"></li>
+		<li class="row"></li>
+		<li class="row">Date</li>
+		<li class="row">Invoice</li>
+		<li class="row">Amount</li>
+		<li class="row">Tax</li>
+		<li class="row">Due</li>
+		<li class="row">Days</li>
+		<li class="row">Ref.</li>
+	</ul>
+	<ul>
+		<li *ngFor="let invoice of sortedList">
+			<span>{{invoice.key}}</span>
+			<ul>
+				<li *ngFor="let item of invoice.value;">
+					<span class="row">{{item.CAP_DATE | date: "d/M/y"}}</span>
+					<span class="row">{{item.CAP_INVOICE}}</span>
+					<span class="row">{{item.CAP_AMOUNT | currency: 'USD':'symbol-narrow'}}</span>
+					<span class="row">{{item.CAP_TAX}}</span>
+					<span class="row">{{item.CAP_DU_DATE | date: "d/M/y"}}</span>
+					<span class="row">{{item.CAP_DAYS}}</span>
+					<span class="row">{{item.CAP_REF}}</span>
+					<span class="row">{{item.total}}</span>
+				</li>
+				<div class="line"></div>
+				<div>
+					<span>Totals:</span>
+					<span>{{invoice.value | runningTotal | currency: 'USD':'symbol-narrow'}}</span>
+				</div>
+			</ul>
+			<div>
+				<span>Totals:</span>
+			<!--	<span>{{invoice.reduce((acc,val) => acc + val.CAP_AMOUNT, 0)}}</span> -->
+			</div>
+		</li>
+	</ul>
+	<div class="footer">
+	</div>
+</div>

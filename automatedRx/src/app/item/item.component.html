@@ -1,0 +1,17 @@
+<div>
+     <ejs-grid [dataSource]='filteredList' [allowPaging]="true" [allowSorting]="true"  [allowFiltering]="true" [allowGrouping]="true" [groupSettings]="groupOptions" [pageSettings]='pageSettings'  (dataBound)='onDataBound($event)'>
+	  <e-columns>
+        <e-column field='PRODUCT' [visible]='false' headerText='Product ID' width='30' [isPrimaryKey]='true'></e-column>
+		<e-column field='DESCRIPTION' headerText='Description' clipMode='EllipsisWithTooltip' width=220></e-column>
+        <e-column field='BIN' headerText='Bin'  [filter]='filter' width=40></e-column>
+        <e-column field='PRICE' headerText='Price' textAlign='Right' format='C2' [allowSorting]='false' [allowFiltering]='false' width=55></e-column>
+        <e-column field='COST' headerText='Cost' textAlign='Right' format='C2' [allowSorting]='false' [allowFiltering]='false' width=55></e-column>
+        <e-column field='QOH' headerText='QOH' textAlign='Right' [allowSorting]='false' [allowFiltering]='false' width=40></e-column>
+        <e-column field='PACKSIZE' headerText='Size' textAlign='Right' [allowSorting]='false' [allowFiltering]='false' width=30></e-column>
+        <e-column field='CATEGORY1' headerText='Dept'  [filter]='filterSettings' clipMode='EllipsisWithTooltip' width=80></e-column>
+        <e-column field='PRODKEY' headerText='Item No'  [filter]='filterSettings' clipMode='EllipsisWithTooltip' width=85></e-column>
+        <!--<e-column field='OrderDate' headerText='Order Date' textAlign='Right' format='yMd' width=120></e-column> -->
+      </e-columns>
+</ejs-grid>
+ </div>
+<!-- <link href="../../styles/Grid/style.css" rel="stylesheet" type="text/css" /> -->

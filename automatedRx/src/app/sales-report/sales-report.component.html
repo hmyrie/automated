@@ -1,0 +1,51 @@
+<h1>
+  Sales Report
+</h1>
+<div>
+	<button (click)="getPeriod()">Run</button>
+	<button (click)="printReport()">Print</button>
+</div>
+<div class="title">
+	<h2>{{reportdate}}</h2>
+</div>
+<div class="sales">
+	<div>
+		<div class="lin labl">Taxable Sales</div>
+		<div class="lin">{{sales.taxable  | currency: 'USD':'symbol-narrow'}}</div>
+	</div>
+	<div>
+		<div class="lin labl">Tax</div>
+		<div class="lin">{{sales.tax  | currency: 'USD':'symbol-narrow'}}</div>
+	</div>
+	<div>
+		<div class="lin labl">Return</div>
+		<div class="lin">{{sales.ret_amt  | currency: 'USD':'symbol-narrow'}}</div>
+	</div>
+	<div>
+		<div class="lin labl">Discount</div>
+		<div class="lin">{{sales.disc  | currency: 'USD':'symbol-narrow'}}</div>
+	</div>
+	<div>
+		<div class="lin labl">Insurance</div>
+		<div class="lin">{{sales.insurance  | currency: 'USD':'symbol-narrow'}}</div>
+	</div>
+	<div>
+		<div class="lin labl">Receivable</div>
+		<div class="lin">{{sales.artot  | currency: 'USD':'symbol-narrow'}}</div>
+	</div>
+</div>
+
+<div id="seldate" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+	<div>Start Date</div>
+    <p><input type="date" [(ngModel)]="date1"/></p>
+	<div>End Date</div>
+    <p><input type="date" [(ngModel)]="date2" /></p>
+	<div>
+		<button (click)="runReport()">Continue</button>
+	</div>
+  </div>
+
+</div>

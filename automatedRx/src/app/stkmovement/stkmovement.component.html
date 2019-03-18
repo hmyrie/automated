@@ -1,0 +1,49 @@
+<p class="title">
+  Stock Movement
+</p>
+	<input type="text" [(ngModel)]="searchText" (keyup)="searchTerm$.next($event.target.value)"/>
+	<button (click)="lookup()">Search</button>
+	<div *ngIf="filteredList" class="list">
+		<ul>
+			<li *ngFor="let item of filteredList" (click)="onSelect(item)">{{item.DESCRIPTION}}</li>
+		</ul>
+	</div>
+	<div *ngIf="showDate" class="dater">
+		<input type="date" [(ngModel)]="reportDate.date1">
+		<span> to </span>
+		<input type="date" [(ngModel)]="reportDate.date2">
+	</div>
+	<div class="reportDate">
+		<h1>{{searchText}}</h1>
+		Reporting: {{reportDate.date1 | date: "mediumDate"}} to {{reportDate.date2 | date: "mediumDate"}}
+	</div>
+<!--	<input type="text" (change)="newname = $event.target.value;" /> -->
+	<div class="btns" [hidden]="!showDate">
+		<button type="button" (click)="accept()">OK</button>
+		<button type="button" (click)="cancel()">Cancel</button>
+		<button type="button" (click)="printIt()" [disabled]="!canPrint">Print</button>
+	</div>
+	<div *ngIf="detailList" >
+		<div class="tabular">
+			<div class="row">
+				<span class="cell date">Date</span>
+				<span class="cell figures">Sold</span>
+				<span class="cell figures">Bought</span>
+				<span class="cell figures">On Hand</span>
+				<span class="cell src">Source</span>
+				<span class="cell src">Status</span>
+				<span class="cell ref">Reference</span>
+				<span class="cell ref">User</span>
+			</div>
+			<div class="row" *ngFor="let detail of detailList">
+				<span class="cell date">{{detail.SDATE | date: "d/M/y"}}</span>
+				<span class="cell figures">{{detail.SOLD}}</span>
+				<span class="cell figures">{{detail.BOUGHT}}</span>
+				<span class="cell figures">{{detail.ONHAND}}</span>
+				<span class="cell src">{{detail.SOURCE}}</span>
+				<span class="cell src">{{detail.STATUS}}</span>
+				<span class="cell ref">{{detail.CONTNO}}</span>
+				<span class="cell ref">{{detail.USR}}</span>
+			</div>
+		</div>
+	</div>

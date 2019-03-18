@@ -1,0 +1,8 @@
+<div class="modalform">
+	<label>New</label>
+	<input type="text" placeholder="Lookup" (keyup)="searchTerm$.next($event.target.value)"/>
+	<button (click)="lookup()">Search</button>
+    <button type="button" (click)="accept()">OK</button>
+    <button type="button" (click)="cancel()">Cancel</button>
+</div>
+<div class="overlay"></div>

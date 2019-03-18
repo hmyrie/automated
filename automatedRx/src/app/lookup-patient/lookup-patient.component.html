@@ -1,0 +1,13 @@
+<div class="modalform">
+	<label>Select Patient</label>
+	<input type="text" placeholder="Lookup" (keyup)="searchTerm$.next($event.target.value)"/>
+	<button (click)="lookup()">Search</button>
+	<div *ngIf="patients">
+		<ul *ngFor="let patient of patients">
+			<li (click)="onSelect(patient)">{{patient.NAME}}</li>
+		</ul>
+	</div>
+    <button type="button" (click)="accept()">OK</button>
+    <button type="button" (click)="cancel()">Cancel</button>
+</div>
+<div class="overlay"></div>

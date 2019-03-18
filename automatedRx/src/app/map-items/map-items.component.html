@@ -1,0 +1,17 @@
+<div>
+  map items!
+    <div class="row">
+      <span class="cell">
+          <button (click)="mapp()">Load</button>
+		<lookup-vendor *ngIf="popVendor" (close)="closeModal($event)"></lookup-vendor>
+		</span>
+		<span>
+			<browse-stock *ngIf="popList" (close)="itemModal($event)"></browse-stock>
+		</span>
+    </div>
+	<div>
+		<ul *ngFor="let item of itemsList; let i = index" style="color: black;">
+			<li (click)="lookup(item)" >{{item.DESCRIPTION}}</li>
+		</ul>
+	</div>
+</div>

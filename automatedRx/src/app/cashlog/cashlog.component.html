@@ -1,0 +1,43 @@
+<div>
+	{{reportdate}}
+</div>
+ <div>
+	<label>Start Date</label>
+    <input type="date" [(ngModel)]="date1"/>
+	<label>End Date</label>
+    <input type="date" [(ngModel)]="date2" />
+	<div>
+		<button (click)="getSales()">Continue</button>
+	</div>
+  </div>
+<div>
+     <ejs-grid [dataSource]='sales' [allowPaging]="true" [allowSorting]="true"  [allowFiltering]="true" [allowGrouping]="true" [groupSettings]="groupOptions" [pageSettings]='pageSettings'  (dataBound)='onDataBound($event)'>
+	  <e-columns>
+        <e-column field='RECEIPT' [visible]='true' headerText='Receipt' width='70' [isPrimaryKey]='true'></e-column>
+		<e-column field='SALEDATE' headerText='Date' textAlign='Right' format='yMd' width=100></e-column>
+        <e-column field='SUBTOTAL' headerText='Price' textAlign='Right' format='C2' [allowSorting]='false' [allowFiltering]='false' width=85></e-column>
+        <e-column field='TAX' headerText='Cost' textAlign='Right' format='C2' [allowSorting]='false' [allowFiltering]='false' width=85></e-column>
+        <e-column field='DISCOUNT' headerText='Discount' textAlign='Right' [allowSorting]='false' [allowFiltering]='false' width=60></e-column>
+        <e-column field='PAYMENT' headerText='Payment' textAlign='Right' [allowSorting]='false' [allowFiltering]='false' width=60></e-column>
+        <e-column field='PAYMODE' headerText='Pay Method' textAlign='Right' [allowSorting]='false' [allowFiltering]='false' width=70></e-column>
+        <e-column field='USR' headerText='Cashier'  [filter]='filterSettings' clipMode='EllipsisWithTooltip' width=90></e-column>
+        <e-column field='NAME' headerText='Name'  [filter]='filterSettings' clipMode='EllipsisWithTooltip' width=100></e-column>
+        <e-column field='CHARGEAC' headerText='Charge'  [filter]='filterSettings' clipMode='EllipsisWithTooltip' width=95></e-column>
+        <e-column field='CHARGEAC' headerText='Charge'  [filter]='filterSettings' clipMode='EllipsisWithTooltip' width=85></e-column>
+        <e-column field='STATUS' headerText='Status'  [filter]='filter' width=50></e-column>
+        <!--<e-column field='OrderDate' headerText='Order Date' textAlign='Right' format='yMd' width=120></e-column> -->
+      </e-columns>
+     </ejs-grid>
+ </div>
+ <div id="seldate" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+	<div>Start Date</div>
+    <p><input type="date" [(ngModel)]="date1"/></p>
+	<div>End Date</div>
+    <p><input type="date" [(ngModel)]="date2" /></p>
+	<div>
+		<button (click)="getSales()">Continue</button>
+	</div>
+  </div>

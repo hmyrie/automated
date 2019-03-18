@@ -1,0 +1,98 @@
+<div id="cmpy">
+	<span class="companyname">{{cmpy.name}}</span>
+	<div>{{cmpy.addr1}}</div>
+	<div>http://website.com</div>
+	<div>{{cmpy.phone}}</div>
+</div>
+<div class="buton">
+	<button [disabled]="isNew" (click)="newOrder()">New</button>
+	<button [disabled]="!isNew" (click)="cancelOrder()">Cancel</button>
+	<button [disabled]="!canSave" (click)="printOrder()">Print</button>
+	<button [disabled]="!canSave" (click)="saveOrder()">Save</button>
+	<button [disabled]="isNew" (click)="closeOrder()">Close</button>
+</div>
+<section class="head">
+	<div class="billing">
+        <div class="billee">Customer:</div>
+		<div contenteditable="true">{{cust.contact}}</div>
+		<div>{{cust.name}}</div>
+		<div>{{cust.addr1}}</div>
+		<div>{{cust.phone}}</div>
+	</div>
+      <div class="ship">
+        <div class="shipping">Ship To:</div>
+		<div contenteditable="true">{{sorder.shipcontact}}</div>
+		<div contenteditable="true">{{cust.name}}</div>
+		<div contenteditable="true">{{sorder.shipadr1}}</div>
+	</div>
+    <div class="parms">
+        <div class="shipping">Sales Order</div>
+      <div class="tabular">
+        <div class="lin"><div class="col">Date:</div><div class="col">{{sorder.saledate | date: "mediumDate"}}</div></div>
+        <div class="lin"><div class="col">Order No: </div><div class="col">{{sorder.orderno}}</div></div>
+        <div class="lin"><div class="col">User:</div><div class="col">Doe</div></div>
+      </div>
+  </div>
+	  <lookup-customer *ngIf="popCustomer" (close)="closeCustomerView($event)"></lookup-customer>
+</section>
+<section class="body">
+	<button (click)="addItem()">Add</button>
+	<table>
+		<thead>
+			<tr>
+				<th>Description</th>
+				<th>Qty</th>
+				<th>Unit Price</th>
+				<th>Extended</th>
+				<th>Tx</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let oLine of OrderLines; index as i">
+				<td>{{oLine.description}}</td>
+				<td class="numeral" contenteditable="true" (keyup.enter)="calcLine(oLine, i)">{{oLine.ordered}}</td>
+				<td class="numeral">{{oLine.price | currency: 'USD':'symbol-narrow'}}</td>
+				<td class="numeral">{{oLine.extended | currency: 'USD':'symbol-narrow'}}</td>
+				<td>{{oLine.taxcode}}</td>
+				<td (click)="delRecord(i)" class="zapper">&#x2704;</td>
+			</tr>
+<!--			<tr>
+				<td>Exercise Books</td>
+				<td class="numeral">5</td>
+				<td class="numeral">$10.00</td>
+				<td class="numeral">$50.00</td>
+				<td>N</td>
+			</tr> -->
+		
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2" class="noline"></td>
+				<td>SubTotal</td>
+				<td  class="numeral">{{sorder.subtotal | currency: 'USD':'symbol-narrow'}}</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="noline"></td>
+				<td>Discount</td>
+				<td class="numeral">{{sorder.discount | currency: 'USD':'symbol-narrow'}}</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="noline">Thank you for your business!</td>
+				<td>Tax</td>
+				<td class="numeral">{{sorder.tax | currency: 'USD':'symbol-narrow'}}</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="noline"></td>
+				<td>Total</td>
+				<td class="numeral total">{{sorder.itemstotal | currency: 'USD':'symbol-narrow'}}</td>
+			</tr>
+		</tfoot>
+	</table>
+	  <lookup-item *ngIf="popItems" (close)="closeItemView($event)"></lookup-item>
+</section>
+
+<section class="foot">
+	<div class="terms">Terms & Conditions</div>
+	<div class="term2">3% restocking fee applies</div>
+	<div class="term2"></div>
+</section>
